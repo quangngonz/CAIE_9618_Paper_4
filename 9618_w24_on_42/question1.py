@@ -61,6 +61,8 @@ class Character:
                 return 40
             if difference == 4:
                 return 20
+            else:
+                return 0
 
 
 

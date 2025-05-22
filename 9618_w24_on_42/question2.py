@@ -3,10 +3,14 @@ from threading import ThreadError
 
 
 class Queue:
-    def __init__(self, queue, headPointer, tailPointer):
-        self.QueueArray = queue         # Array up to 100 INTEGER values
-        self.Headpointer = headPointer  # Index first data Item
-        self.Tailpointer = tailPointer  # Index next free location
+    def __init__(self):
+        self.QueueArray = []            # Array up to 100 INTEGER values
+        for x in range(0, 100):
+            self.QueueArray.append(-1)
+
+        self.Headpointer = -1  # Index first data Item
+        self.Tailpointer = 0  # Index next free location
+
 
     def Enqueue(self, theData: int):
         if self.Headpointer == -1:
@@ -15,7 +19,7 @@ class Queue:
             self.Tailpointer = self.Tailpointer + 1
             return 1
         else:
-            if self.Tailpointer > 100:
+            if self.Tailpointer > 99:
                 return -1
             else:
                 self.QueueArray[self.Tailpointer] = theData
@@ -23,7 +27,7 @@ class Queue:
                 return 1
     
     def Dequeue(self):
-        if self.Tailpointer == 0:
+        if self.Tailpointer == 0 or self.Headpointer == -1 or self.Headpointer == self.Tailpointer:
             return -1 
         else:
             nextItem = self.QueueArray[self.Headpointer]
@@ -33,11 +37,7 @@ class Queue:
             
 
 
-emptyQueue = []
-for i in range(100):
-    emptyQueue.append(-1)
-
-TheQueue = Queue(emptyQueue, -1, 0)
+TheQueue = Queue()
 
 def ReturnAllData():
     global TheQueue
@@ -59,6 +59,8 @@ for i in range(10):
 
     if ReturnValue == -1:
         print("Queue is full")
+    else:
+        print("Item inserted")
 
 outputString = ReturnAllData()
 
@@ -71,5 +73,5 @@ for i in range(2):
         print("Queue is empty")
     else:
         print(NextValue)
-    
-    
+
+print(ReturnAllData())
