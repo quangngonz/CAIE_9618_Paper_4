@@ -1,5 +1,9 @@
 
 class Character:
+    #self.XPosition integer
+    #self.YPosition integer
+    #self.Name string
+
     def __init__(self, pName, pXPos, pYPos):
         self.Name = pName       # Chracter Name: STRING
         self.XPosition = pXPos  # Chracter X-Position: INTEGER
@@ -42,14 +46,14 @@ class BikeCharacter(Character):
         super().__init__(pName, pXPos, pYPos)
     
     def Move(self, direction):
-        if direction == 'up':
-            self.SetYPosition(20)
-        elif direction == 'down':
-            self.SetYPosition(-20)
-        elif direction == 'left':
-            self.SetXPosition(-20)
-        elif direction == 'right':
-            self.SetXPosition(20)
+        if(direction == "up"):
+            super().SetYPosition(20)
+        elif(direction == "down"):
+            super().SetYPosition(-20)
+        elif(direction == "right"):
+            super().SetXPosition(2)
+        else:
+            super().SetXPosition(-20)
 
 Jack = Character("Jack", 50, 50)
 Karla = BikeCharacter("Karla", 100, 50)
